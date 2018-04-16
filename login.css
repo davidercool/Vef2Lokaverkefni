@@ -1,0 +1,13 @@
+body {
+    margin: auto;
+    max-width: 30%;
+    background-color: black;
+}
+
+label {
+    color: white !important;
+}
+
+.marginal {
+    margin-top: 50%;
+}
