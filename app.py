@@ -1,4 +1,12 @@
 from flask import *
+from page import *
+from infoFetch import updatePages
+
+try:
+    with open("pages.json", "r") as f:
+        pages = eval(f.read())
+except FileNotFoundError:
+    updatePages()
 
 app = Flask(__name__)
 
