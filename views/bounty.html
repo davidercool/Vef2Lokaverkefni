@@ -1,0 +1,17 @@
+<!doctype HTML>
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="/static/semantic/semantic.min.css">
+        <script src="../static/semantic/jquery-3.3.1.min.js"></script>
+        <script src="../static/semantic/semantic.min.js"></script>
+        <link rel="stylesheet" href="../static/bounty.css">
+    </head>
+    <body>
+        {% for x in range({{untranslatedArticles}}) %}
+        <div class="article">
+            <p class="one">Article Name</p>
+            <p class="two">Article bounty</p>
+        </div>
+        {% endfor %}
+    </body>
+</html>

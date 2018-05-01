@@ -1,0 +1,22 @@
+body {
+    margin: auto;
+    max-width: 50%;
+    color: white;
+    background-color: black;
+}
+
+.article {
+    display: flex;
+    flex-direction: row;
+}
+
+p.one {
+    padding-right: 40%;
+    border-style: none solid none none;
+    border-color: white;
+    border-width: 2px;
+}
+
+p.two {
+    margin-left: 1%;
+}

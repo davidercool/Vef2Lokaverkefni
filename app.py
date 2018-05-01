@@ -10,8 +10,13 @@ except FileNotFoundError:
 
 app = Flask(__name__)
 
+filteredPages = {}
+
+for x in pages:
+    if all(pages[x].values()):
+        filteredPages[x] = pages[x]
+
 @app.route("/")
 def index():
-    return "Welcome, please donate"
-
+    return render_template("bounty.html")
 app.run("0.0.0.0", debug=True)

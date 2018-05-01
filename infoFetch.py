@@ -1,14 +1,11 @@
-import urllib.request, json, threading
+import urllib.request, os, json, threading
 from page import *
-
 
 def updatePages():
     topSites=[]
     threadLock = threading.Lock()
     threads = []
     finished = 0
-
-
     def fetchLanguageDataLanglinks(elem):
         try:
             with urllib.request.urlopen("https://commons.wikimedia.org/w/api.php?action=query&titles=" + elem[0] + "&lllimit=500&rawcontinue&prop=langlinks&format=json") as url:
@@ -31,6 +28,7 @@ def updatePages():
 
     def fetchLanguageDataScrape(elem):
         try:
+            print("https://en.wikipedia.org/wiki/" + elem[0])
             with urllib.request.urlopen("https://en.wikipedia.org/wiki/" + elem[0]) as url:
                 pages[elem[0]] = Page(elem[0], "interwiki-is" in url.read().decode(), elem[1])
         except UnicodeEncodeError: pass #print("Includes non ascii characters")
@@ -53,7 +51,7 @@ def updatePages():
             print("finished " + self.name + (" " * (80 - len(self.name))) + str(finished) + "/" + str(len(threads)))
 
 
-    for x in json.load(open('viewData.json')):
+    for x in json.load(open(os.path.join(os.path.realpath(__file__), "../viewData.json"))):
         topSites.append([x["article"].replace(" ", "_"), int(x["views"])])
 
     for x in topSites:
