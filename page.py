@@ -9,7 +9,11 @@ class Page:
 
     @property
     def name(self):
-        return self.name
+        return self.__name
+
+    @property
+    def prettyName(self):
+        return self.__name.replace("_", " ")
 
     @property
     def translated(self):
@@ -21,7 +25,7 @@ class Page:
 
     @property
     def bounty(self):
-        return self.__views // 1000
+        return self.__views // 10000
 
     def pretty(self):
         return "<Page>(" + self.__name + ")"

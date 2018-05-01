@@ -4,19 +4,16 @@ from infoFetch import updatePages
 
 try:
     with open("pages.json", "r") as f:
-        pages = eval(f.read())
+        for x in list(eval(f.read()).values()):
+            pages[x["name"]] = Page(x["name"], x["translated"], x["views"])
 except FileNotFoundError:
     updatePages()
 
 app = Flask(__name__)
 
-filteredPages = {}
-
-for x in pages:
-    if all(pages[x].values()):
-        filteredPages[x] = pages[x]
+filteredPages = list(filter(lambda x: not x.translated, list(pages.values())))
 
 @app.route("/")
 def index():
-    return render_template("bounty.html")
+    return render_template('bounty.html', untranslatedArticles = filteredPages, enumerate=enumerate, str=str, len=len)
 app.run("0.0.0.0", debug=True)

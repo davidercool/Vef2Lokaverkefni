@@ -8,15 +8,43 @@ body {
 .article {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+}
+
+.article2 {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+p {
+    display: inline-block;
+    margin-bottom: 0px !important;
 }
 
 p.one {
-    padding-right: 40%;
-    border-style: none solid none none;
     border-color: white;
     border-width: 2px;
 }
 
 p.two {
-    margin-left: 1%;
+    padding-right: 30%;
+    border-style: none none none solid;
+}
+
+.lone {
+    padding-left: 33px;
+}
+
+.ltwo {
+    padding-left: 25px;
+}
+
+.lthree {
+    padding-left: 16px;
+}
+
+.lfour {
+    padding-left: 8px;
 }
