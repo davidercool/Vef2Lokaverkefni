@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="../static/bounty.css">
     </head>
     <body>
+        {% include 'header.html' %}
         {% for x, elem in enumerate(untranslatedArticles) %}
             {% if x % 2 == 0 %}
                 <div class="article">

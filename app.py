@@ -16,4 +16,13 @@ filteredPages = list(filter(lambda x: not x.translated, list(pages.values())))
 @app.route("/")
 def index():
     return render_template('bounty.html', untranslatedArticles = filteredPages, enumerate=enumerate, str=str, len=len)
+
+@app.route("/logon")
+def logon():
+    return render_template('login.html')
+
+@app.route("/translate")
+def editor():
+    return render_template('translation.html')
+
 app.run("0.0.0.0", debug=True)
