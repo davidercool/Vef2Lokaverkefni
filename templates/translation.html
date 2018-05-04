@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link type="text/css" rel="stylesheet" href="/static/semantic/semantic.min.css">
+        <link type="text/css" rel="stylesheet" href="../static/semantic/semantic.min.css">
         <script src="../static/semantic/jquery-3.3.1.min.js"></script>
         <script src="../static/semantic/semantic.min.js"></script>
         <link type="text/css" rel="stylesheet" href="../static/translation.css">
@@ -10,9 +10,16 @@
     </head>
     <body>
         {% include 'header.html' %}
-        <div class="textbox">
-            <h1>Translate</h1>
-            <textarea name="Text1" cols="90" rows="50"></textarea>
+        <div class="textboxes">
+            <div class="textbox">
+                <h1>Translate</h1>
+                <textarea name="Text1" cols="90" rows="50" id="translate" value="hello"></textarea>
+            </div>
+            <div class="textbox">
+                <h1>Preview</h1>
+                <textarea name="Text1" cols="90" rows="50" id="preview"></textarea>
+            </div>
         </div>
+    <script src="../static/translation.js"></script>
     </body>
 </html>

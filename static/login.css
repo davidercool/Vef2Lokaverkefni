@@ -1,13 +1,17 @@
 body {
     margin: auto;
-    max-width: 30%;
     background-color: black;
+    width: 100%;
+    height: 100%;
 }
 
 label {
     color: white !important;
 }
 
-.marginal {
-    margin-top: 50%;
+form {
+    margin-top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
 }
