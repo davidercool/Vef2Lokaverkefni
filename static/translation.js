@@ -1,11 +1,19 @@
 var text = document.getElementById("translate");
 var preview = document.getElementById("preview");
-console.log(text.value)
+
 text.addEventListener("keyup", updatePreview, false);
 
-
 function updatePreview() {
-    preview.value = text.value;
-    console.log(text)
-    console.log(preview)
+    if(text.value.search("What") != -1) {
+        var start = text.value.search("What")
+        var word = text.value.slice(start-1,start+4)
+        word = "Hello"
+        var before = text.value.slice(0,start)
+        var after = text.value.slice(start+4,text.value.length);
+        preview.innerHTML = before+word+after;
+    } else {
+        var pTag = document.createElement("p")
+        pTag.innerHTML = text.value;
+        preview.innerHTML = pTag.innerHTML;
+    }
 }

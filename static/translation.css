@@ -14,6 +14,20 @@ body {
     display: flex;
 }
 
-h1 {
+.center {
     text-align: center;
 }
+
+.bgwhite {
+    background-color: white !important;
+    color: black;
+    font-size: 15px;
+    line-height: 25px;
+}
+
+
+
+p {
+    font-size: 15px;
+}
+

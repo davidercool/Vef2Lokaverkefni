@@ -11,13 +11,15 @@
     <body>
         {% include 'header.html' %}
         <div class="textboxes">
-            <div class="textbox">
+            <div class="center textbox">
                 <h1>Translate</h1>
                 <textarea name="Text1" cols="90" rows="50" id="translate" value="hello"></textarea>
             </div>
             <div class="textbox">
-                <h1>Preview</h1>
-                <textarea name="Text1" cols="90" rows="50" id="preview"></textarea>
+                <h1 class="center">Preview</h1>
+                <div class="bgwhite" id="preview">
+                
+                </div>
             </div>
         </div>
     <script src="../static/translation.js"></script>
