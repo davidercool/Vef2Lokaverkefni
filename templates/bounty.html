@@ -5,20 +5,34 @@
         <script src="../static/semantic/jquery-3.3.1.min.js"></script>
         <script src="../static/semantic/semantic.min.js"></script>
         <link rel="stylesheet" href="../static/bounty.css">
+        <meta charset="UTF-8">
+        <title>Bounty</title>
     </head>
     <body>
-        {% for x, elem in enumerate(untranslatedArticles) %}
-            {% if x % 2 == 0 %}
-                <div class="article">
-                    <p class="one">{{elem.prettyName}}</p>
-                    <p class="two {{["lone", "ltwo", "lthree", "lfour"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
+        <header>
+            <div class="ui menu">
+                <a class="item" href="#">Home</a>
+                <a class="item" href="#">Leaderboards</a>
+                <div class="right menu">
+                    <a class="item" href="#">Sign In</a>
+                    <a class="item" href="#">Info</a>
                 </div>
-            {% else %}
-                <div class="article2">
-                    <p class="one">{{elem.prettyName}}</p>
-                    <p class="two {{["lone", "ltwo", "lthree", "lfour"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
-                </div>
-            {% endif %}
-        {% endfor %}
+            </div>
+        </header>
+        <div class="table">
+            {% for x, elem in enumerate(untranslatedArticles) %}
+                {% if x % 2 == 0 %}
+                    <div class="article">
+                        <p class="one">{{elem.prettyName}}</p>
+                        <p class="two {{["lone", "ltwo", "lthree", "lfour"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
+                    </div>
+                {% else %}
+                    <div class="article2">
+                        <p class="one">{{elem.prettyName}}</p>
+                        <p class="two {{["lone", "ltwo", "lthree", "lfour"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div> 
     </body>
 </html>

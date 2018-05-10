@@ -1,0 +1,30 @@
+body {
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+
+.textbox {
+    width: 34.08%;
+    margin-left: 8%;
+    margin-top: 2%;
+}
+
+.textboxes {
+    display: flex;
+}
+
+.center {
+    text-align: center;
+}
+
+.bgwhite {
+    background-color: white !important;
+    color: black;
+    font-size: 15px;
+    line-height: 25px;
+}
+
+p {
+    font-size: 15px;
+}

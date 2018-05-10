@@ -26,8 +26,15 @@ filteredPages = list(filter(lambda x: not x.translated, list(pages.values())))
 
 @app.route("/")
 def index():
-    return render_template('bounty.html', untranslatedArticles=filteredPages, enumerate=enumerate, str=str, len=len)
+    return render_template('home.html', untranslatedArticles=filteredPages, enumerate=enumerate, str=str, len=len)
 
+@app.route("/translate")
+def editor():
+    return render_template('translation.html')
+
+@app.route("/bounty")
+def bounty():
+    return render_template('bounty.html', untranslatedArticles=filteredPages, enumerate=enumerate, str=str, len=len)
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -53,6 +60,5 @@ def login():
         return render_template("login.html", message="Login failed! Username or password is incorrect.", colors=["#FF5343", "#7F2A22"])
     else:
         return render_template("login.html", message=None)
-
 
 app.run("0.0.0.0", debug=True)

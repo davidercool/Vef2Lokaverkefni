@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link type="text/css" rel="stylesheet" href="../static/semantic/semantic.min.css">
+        <script src="../static/semantic/jquery-3.3.1.min.js"></script>
+        <script src="../static/semantic/semantic.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="../static/home.css">
+        <meta charset="UTF-8">
+        <title>Translate</title>
+    </head>
+    <body>
+        <header>
+            <div class="ui menu">
+                <a class="item" href="#">Home</a>
+                <a class="item" href="#">Leaderboards</a>
+                <div class="right menu">
+                    <a class="item" href="#">Sign In</a>
+                    <a class="item" href="#">Info</a>
+                </div>
+            </div>
+        </header>
+        <div class="mainbox">
+            <h1 class="welcome">Welcome to wiki translate!</h1>
+            <h3 class="greeting">Here you can translate wikipedia pages that need translation! If you are new here, click <a>here</a> to sign up!</h3>
+            <div class="flex">
+                <div class="leaderboard topTranslators">
+                    <h2>Top Translators</h2>
+                    <div class="box"><h1 class="construction">WIP</h1></div>
+                </div>
+                <div class="leaderboard topBounty">
+                    <h2>Highest Bounty Pages</h2>
+                    <div class="box">
+                        <div class="gradient">
+                            
+                        </div>
+                        {% for x, elem in enumerate(untranslatedArticles[:16]) %}
+                            {% if x % 2 == 0 %}
+                                <div class="article marginal">
+                                    <p class="one"><a href="http://en.wikipedia.com/wiki/{{elem.name}}">{{elem.prettyName}}</a></p>
+                                    <p class="two {{["lone", "ltwo", "lthree", "lfour"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
+                                </div>
+                            {% else %}
+                                <div class="article2 marginal">
+                                    <p class="one"><a href="http://en.wikipedia.com/wiki/{{elem.name}}">{{elem.prettyName}}</a></p>
+                                    <p class="two {{["lone", "ltwo", "lthree", "lfour"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

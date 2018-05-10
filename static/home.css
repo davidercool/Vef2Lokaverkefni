@@ -6,6 +6,65 @@ body {
     background-color: black;
 }
 
+a {
+    color: rgb(242, 192, 192);
+}
+
+.mainbox {
+    margin-top: 2%;
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50%;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.welcome {
+    margin-bottom: 0;
+}
+
+.greeting {
+    margin-top: 0;
+}
+
+.leaderboard {
+    width: 50%;
+}
+
+.topBounty {
+    
+}
+
+.topTranslators {
+    
+}
+
+.construction {
+    text-align: center;
+    font-size: 1000%;
+    line-height: 300%;
+}
+
+.box {
+    overflow: hidden;
+    border-radius: 2%;
+    height: 100%;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+/*form {
+    margin-top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}*/
+
 .article {
     display: flex;
     flex-direction: row;
@@ -54,4 +113,9 @@ p.two {
 
 .lfour {
     padding-left: 8px;
+}
+
+.marginal {
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
