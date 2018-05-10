@@ -23,17 +23,22 @@
             <input type="url" name="loginreturnurl" value="localhost:5000" style="display:none;">A
             <input type="text" name="logintoken" value="3a327776c8c9f33937963a0c362396fc5aea167e+\" style="display:none;">
             <input type="checkbox" name="rememberMe" style="display:none;" checked>
+        {% if message is not none%}
+            <div class="ui small modal" style="text-align: center; background-color: {{colors[0]}}; color: {{colors[1]}}">
+                <h1>{{ message }}</h1>
+            </div>
+            <script>
+                $('.ui.modal').modal('show');
+            </script>
+        {% endif %}
+        <form class="ui form marginal" action="/login" method="post">
             <div class="field required">
                 <label>Username</label>
-                <input type="text" name="username" placeholder="Username" required>
+                <input type="text" placeholder="username" name="name" required>
             </div>
-            <!--<div class="field required">
-                <label>E-mail</label>
-                <input type="email" placeholder="joe@schmoe.com" required>
-            </div>-->
             <div class="field required">
                 <label>Password</label>
-                <input type="password" name="password" placeholder="joe@schmoe.com" required>
+                <input type="password" placeholder="password" name="passw" required>
             </div>
             <button class="ui button" type="submit">Submit</button>
         </form>

@@ -1,0 +1,34 @@
+<!doctype HTML>
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="../static/semantic/semantic.min.css">
+        <script src="../static/semantic/jquery-3.3.1.min.js"></script>
+        <script src="../static/semantic/semantic.min.js"></script>
+        <link rel="stylesheet" href="../static/login.css">
+    </head>
+    <body>
+        {% if message is not none%}
+            <div class="ui small modal" style="text-align: center; background-color: {{colors[0]}}; color: {{colors[1]}};">
+                <h1>{{ message }}</h1>
+            </div>
+            <script>
+                $('.ui.modal').modal('show');
+            </script>
+        {% endif %}
+        <form class="ui form marginal" action="/signup" method="post">
+            <div class="field required">
+                <label>Username</label>
+                <input type="text" placeholder="Username" name="name" required>
+            </div>
+            <div class="field required">
+                <label>Email</label>
+                <input type="email" placeholder="Example@email.com" name="email" required>
+            </div>
+            <div class="field required">
+                <label>Password</label>
+                <input type="password" placeholder="Password" name="passw" required>
+            </div>
+            <button class="ui button" type="submit">Submit</button>
+        </form>
+    </body>
+</html>
