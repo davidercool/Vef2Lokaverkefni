@@ -1,9 +1,10 @@
-import urllib.request
+import urllib.request, re
 from flask import *
 from page import *
 from infoFetch import updatePages
 from dataHandler import Handler
 from user import *
+from resources import *
 
 try:
     with open("pages.json", "r") as f:
@@ -15,27 +16,41 @@ except FileNotFoundError:
 app = Flask(__name__)
 app.config.update(dict(
     SECRET_KEY="PrinceCharlesIV",
-    WTF_CSRF_SECRET_KEY="PrinceCharlesVI"
+    WTF_CSRF_SECRET_KEY="PrinceCharlesVI",
 ))
 
+app.secret_key = "PrinceCharlesVI"
+
 handler = Handler("UserData/data.json")
-print(handler.evaluated())
-print(handler.get_user("bob"))
 
 filteredPages = list(filter(lambda x: not x.translated, list(pages.values())))
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
     return render_template('home.html', untranslatedArticles=filteredPages, enumerate=enumerate, str=str, len=len)
 
+
 @app.route("/translate")
 def editor():
-    return render_template('translation.html')
+    userID = request.cookies.get("userID")
+    if userID is None:
+        # ef user er ekki logged in
+        return render_template('translation.html')
+    try:
+        if handler.get_user(decrypt(userID)) is None:
+            # ef user er logged it en ekki til
+            return render_template('translation.html')
+        # ef user er logged in og til
+        return render_template('translation.html')
+    except:
+        return "error"
+
 
 @app.route("/bounty")
 def bounty():
     return render_template('bounty.html', untranslatedArticles=filteredPages, enumerate=enumerate, str=str, len=len)
+
 
 @app.route("/u/<username>")
 def userpage(username):
@@ -43,6 +58,7 @@ def userpage(username):
         return render_template('userpage.html', user=handler.get_user(username))
 
     return "404"
+
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -56,6 +72,7 @@ def signup():
     else:
         return render_template("signup.html", message=None)
 
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -64,9 +81,31 @@ def login():
         user = handler.get_user(name)
         if user is not None:
             if decrypt(user.passw) == passw:
-                return redirect("/")
+                resp = make_response(redirect("/"))
+                resp.set_cookie("userID", encrypt(name), max_age=2678400) #31*24*60*60 = 2678400
+                return resp
         return render_template("login.html", message="Login failed! Username or password is incorrect.", colors=["#FF5343", "#7F2A22"])
     else:
         return render_template("login.html", message=None)
+
+
+@app.route("/search")
+def search():
+    s = request.args.get('s')
+    l = request.args.get('l')
+    o = request.args.get('o')
+    if s == None:
+        return render_template("search.html", results=None)
+    l = 20 if l is None else l
+    o = 0 if o is None else o
+    return str(get_searches(s,l,o))
+
+
+@app.route("/logout")
+def logout():
+    resp = make_response(redirect("/"))
+    resp.delete_cookie("userID")
+    return resp
+
 
 app.run("0.0.0.0", debug=True)

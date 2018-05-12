@@ -1,7 +1,6 @@
 from cryption import *
 from user import *
 
-
 class Handler:
     def __init__(self, file):
         self.__file = file
