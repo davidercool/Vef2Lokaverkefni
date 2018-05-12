@@ -1,4 +1,4 @@
-from page import *
+from Scripts.page import *
 try:
     with open("pages.json", "r") as f:
         pages = eval(f.read())

@@ -1,5 +1,4 @@
-from cryption import *
-from user import *
+from Scripts.user import *
 
 class Handler:
     def __init__(self, file):

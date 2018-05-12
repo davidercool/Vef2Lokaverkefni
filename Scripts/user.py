@@ -1,4 +1,4 @@
-from cryption import *
+from Scripts.cryption import *
 
 
 class User:
