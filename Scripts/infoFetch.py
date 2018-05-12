@@ -1,11 +1,12 @@
 import urllib.request, os, json, threading
-from page import *
+from Scripts.page import *
+
+topSites=[]
+threadLock = threading.Lock()
+threads = []
+finished = 0
 
 def updatePages():
-    topSites=[]
-    threadLock = threading.Lock()
-    threads = []
-    finished = 0
     def fetchLanguageDataLanglinks(elem):
         try:
             with urllib.request.urlopen("https://commons.wikimedia.org/w/api.php?action=query&titles=" + elem[0] + "&lllimit=500&rawcontinue&prop=langlinks&format=json") as url:
@@ -49,9 +50,7 @@ def updatePages():
             global finished
             finished += 1
             print("finished " + self.name + (" " * (80 - len(self.name))) + str(finished) + "/" + str(len(threads)))
-
-
-    for x in json.load(open(os.path.join(os.path.realpath(__file__), "../viewData.json"))):
+    for x in json.load(open(os.path.join(os.path.realpath(__file__), "..\\..\\UserData\\viewData.json"))):
         topSites.append([x["article"].replace(" ", "_"), int(x["views"])])
 
     for x in topSites:
@@ -62,6 +61,6 @@ def updatePages():
     for x in threads:
         x.join()
 
-    with open("pages.json", "w") as f:
+    with open(os.path.join(os.path.realpath(__file__), "..\\..\\UserData\\pages.json"), "w") as f:
         print(pages)
         f.write(str(pages))

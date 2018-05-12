@@ -1,13 +1,13 @@
 import urllib.request, re
 from flask import *
-from page import *
-from infoFetch import updatePages
-from dataHandler import Handler
-from user import *
-from resources import *
+from Scripts.page import *
+from Scripts.infoFetch import updatePages
+from Scripts.dataHandler import Handler
+from Scripts.user import *
+from Scripts.resources import *
 
 try:
-    with open("pages.json", "r") as f:
+    with open("UserData/pages.json", "r") as f:
         for x in list(eval(f.read()).values()):
             pages[x["name"]] = Page(x["name"], x["translated"], x["views"])
 except FileNotFoundError:
@@ -98,7 +98,10 @@ def search():
         return render_template("search.html", results=None)
     l = 20 if l is None else l
     o = 0 if o is None else o
-    return str(get_searches(s,l,o))
+    try:
+        return str(get_searches(s,l,o))
+    except:
+        return "Unknown error"
 
 
 @app.route("/logout")
