@@ -6,38 +6,52 @@ body {
     background-color: black;
 }
 
+p {
+    display: inline-block;
+    margin-bottom: 0px !important;
+}
+.table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 45%;
+}
+
+.header {
+    border-bottom: 2px solid white;
+    display: flex;
+    flex-direction: row;
+}
+
 .article {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    margin: 0;
 }
 
 .article2 {
     background-color: rgba(255, 255, 255, 0.1) !important;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    margin: 0px;
 }
 
-p {
-    display: inline-block;
-    margin-bottom: 0px !important;
+.headerone {
+    width: 64.3%;
+    border-style: none solid none none;
+    padding-left: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 
-p.one {
-    border-color: white;
-    border-width: 2px;
+.headertwo {
+    padding-left: 2%;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 
-p.two {
-    padding-right: 30%;
-    border-style: none none none solid;
-}
-
-.table {
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
+.please {
+    width: 64.3%;
+    border-style: none solid none none;
 }
 
 .lone {
