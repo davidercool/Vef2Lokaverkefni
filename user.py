@@ -1,5 +1,6 @@
 from cryption import *
 
+
 class User:
     def __init__(self, name, mail, passw, submissions=[], created=False):
         self.__name = name
@@ -25,6 +26,8 @@ class User:
 
     def add_submission(self, submission):
         self.__submissions.append(submission)
+
+
 
     def __str__(self):
         return "{'name':'" + self.__name + "', 'mail': '" + self.__mail + "', 'passw': '" + self.__passw + "', 'submissions': " + str(self.__submissions) + "}"
