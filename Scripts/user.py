@@ -27,7 +27,8 @@ class User:
     def add_submission(self, submission):
         self.__submissions.append(submission)
 
-
+    def pretty(self):
+        return "<User>(Name: " + self.__name + ")"
 
     def __str__(self):
         return "{'name':'" + self.__name + "', 'mail': '" + self.__mail + "', 'passw': '" + self.__passw + "', 'submissions': " + str(self.__submissions) + "}"

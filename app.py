@@ -1,6 +1,4 @@
-import urllib.request, re
 from flask import *
-from Scripts.page import *
 from Scripts.infoFetch import updatePages
 from Scripts.dataHandler import Handler
 from Scripts.user import *
