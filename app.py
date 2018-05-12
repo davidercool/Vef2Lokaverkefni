@@ -52,6 +52,14 @@ def bounty():
     return render_template('bounty.html', untranslatedArticles=filteredPages, enumerate=enumerate, str=str, len=len)
 
 
+@app.route("/u/<username>")
+def userpage(username):
+    if handler.get_user(username) is not None:
+        return render_template('userpage.html', user=handler.get_user(username))
+
+    return "404"
+
+
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "POST":

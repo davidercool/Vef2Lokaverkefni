@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link type="text/css" rel="stylesheet" href="../static/semantic/semantic.min.css">
+        <script src="../static/semantic/jquery-3.3.1.min.js"></script>
+        <script src="../static/semantic/semantic.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="../static/userpage.css">
+        <meta charset="UTF-8">
+        <title>Translate</title>
+    </head>
+    <body>
+        <header>
+            <div class="ui menu">
+                <a class="item" href="#">Home</a>
+                <a class="item" href="#">Leaderboards</a>
+                <div class="right menu">
+                    <a class="item" href="#">Sign In</a>
+                    <a class="item" href="#">Info</a>
+                </div>
+            </div>
+        </header>
+        <div class="userbox box">
+            <div class="userinfo">
+                <img src="/static/img/placeholder.png" height=100>
+                <h1 class="username">{{user.name}}</h1>
+            </div>
+            <div class="userstats">
+                <div class="bountyinfo">
+                    <p>bounty</p>
+                    <h2>3000</h2>
+                </div>    
+                <div class="rankinfo">
+                    <p>rank</p>
+                    <h2>12</h2>
+                </div>
+            </div>
+        </div>
+        <div class="submissionbox box">
+            <h1 class="title">Activity</h1>
+            <div class="submission">
+                <div class="action">
+                    <p class="articlePreface">Translated article:</p>
+                    <h1 class="articleTitle">World War II</h1>
+                </div>
+                <div class="reward">
+                    <p class="bountypreface">bounty awarded</p>
+                    <h2 class="bountyreward">143</h2>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

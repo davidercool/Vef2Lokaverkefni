@@ -11,7 +11,7 @@
     <body>
         <header>
             <div class="ui menu">
-                <a class="item" href="#">Home</a>
+                <a class="item" href="/">Home</a>
                 <a class="item" href="#">Leaderboards</a>
                 <div class="right menu">
                     <a class="item" href="#">Sign In</a>
@@ -20,16 +20,20 @@
             </div>
         </header>
         <div class="table">
+            <div class="header">
+                <p class="headerone">Article Name</p>
+                <p class="headertwo">Article Bounty</p>
+            </div>
             {% for x, elem in enumerate(untranslatedArticles) %}
                 {% if x % 2 == 0 %}
                     <div class="article">
-                        <p class="one">{{elem.prettyName}}</p>
-                        <p class="two {{["lone", "ltwo", "lthree", "lfour"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
+                        <p class="headerone"><a href="http://en.wikipedia.com/wiki/{{elem.name}}">{{elem.prettyName}}</a></p>
+                        <p class="headertwo {{["lone", "ltwo", "lthree", "lfour"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
                     </div>
                 {% else %}
                     <div class="article2">
-                        <p class="one">{{elem.prettyName}}</p>
-                        <p class="two {{["lone", "ltwo", "lthree", "lfour"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
+                        <p class="headerone"><a href="http://en.wikipedia.com/wiki/{{elem.name}}">{{elem.prettyName}}</a></p>
+                        <p class="headertwo {{["lone", "ltwo", "lthree", "lfour"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
                     </div>
                 {% endif %}
             {% endfor %}
