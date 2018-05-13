@@ -129,7 +129,7 @@ def search():
     l = 20 if l is None else l
     o = 0 if o is None else o
     try:
-        return str(get_searches(s,l,o,handler))
+        return render_template("search",results=str(get_searches(s,l,o,handler)))
     except:
         return "Unknown error"
 
