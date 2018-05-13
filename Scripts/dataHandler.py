@@ -107,7 +107,7 @@ class Handler:
             if x.name == page.name:
                 return None
         dic = self.evaluated_pages()
-        for x in list(dic["pages"]):
+        for x in dic["pages"]:
             if x["name"] == page.name:
                 return None
         dic["pages"].append(page)
