@@ -18,9 +18,10 @@ body {
 
 .searchoptionscontainer {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 1%;
+    top: 10%;
     width: 20%;
+    padding: 2%;
 }
 
 .articleinfo {
@@ -38,4 +39,12 @@ body {
 
 .diviv {
     margin-left: -37%;
+}
+
+.jsbox {
+    margin-bottom: 5%;
+}
+
+.optionstitle {
+    margin-left: -4%;
 }

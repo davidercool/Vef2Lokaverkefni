@@ -4,6 +4,8 @@
         <link type="text/css" rel="stylesheet" href="/static/semantic/semantic.min.css">
         <script src="../static/semantic/jquery-3.3.1.min.js"></script>
         <script src="../static/semantic/semantic.min.js"></script>
+        <script src="../static/semantic/nouislider.js"></script>
+        <link rel="stylesheet" href="../static/semantic/nouislider.css">
         <link rel="stylesheet" href="../static/search.css">
         <meta charset="UTF-8">
         <title>Search Results</title>
@@ -22,26 +24,29 @@
         <div class="searchresultscontainer box">
             <h1 class="articlename">Article Name</h1>
             <div class="articleinfo">
-                <!-- já þetta þarf að vera hérna ég veit ekkert afhverju !-->
+                <div class="diviv"></div> <!-- já þetta þarf að vera hérna ég veit ekkert afhverju !-->
                 <h3 class="articlebounty">800 Bounty</h3>
                 <h3 class="articlelength">1337 words</h3>
                 <h3 class="articleviews">8008135 Views</h3>
             </div>
         </div>
         <div class="searchoptionscontainer box">
-            <h3 class="optionstitle">Filter Options</h3>
-            <div class="viewsslider">
+            <h2 class="optionstitle">Filter Options</h2>
+            <div class="viewsslider jsbox">
                 <h3 class="viewsslidername">Filter By views</h3>
-                <slider>???</slider>
+                <div class="" id="slider"></div>
             </div>
-            <div class="wordslider">
+            <div class="wordslider jsbox">
                 <h3 class="wordslidername">Filter By Length (in words)</h3>
-                <slider>???</slider>
+                <div class="" id="slider2"></div>
             </div>
-            <div class="bountyslider">
+            <div class="bountyslider jsbox">
                 <h3 class="bountyslidername">Filter By Bounty reward</h3>
-                <slider>???</slider>
+                <div class="" id="slider3"></div>
             </div>
         </div>
+        <script src="../static/search.js">
+            results = {{results}};
+        </script>
     </body>
 </html>
