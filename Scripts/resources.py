@@ -2,6 +2,7 @@ import urllib.request
 from datetime import datetime
 from Scripts.page import *
 
+
 def indexOfNth(container, elem = " ", nth = 1):
     if nth == 0:
         return 0
@@ -14,7 +15,8 @@ def indexOfNth(container, elem = " ", nth = 1):
     if occ < nth:
         return len(container)
 
-def get_searches(s,l,o):
+
+def get_searches(s,l,o,handler):
     results=[]
     sPage = urllib.request.urlopen("https://en.wikipedia.org/w/index.php?title=Special:Search&limit=" + str(l) + "&offset=" + str(o) + "&profile=default&search=" + s.replace(" ", "+")).read().decode()
     sstr = "<div class='mw-search-result-heading'><a href=\"/wiki/"
@@ -30,5 +32,7 @@ def get_searches(s,l,o):
         words = sPage[sind2 + len(sstr2):sind2 + eind2].replace(",", "")
         month = str([datetime.now().month - 1, 12][datetime.now().month == 1])
         views = eval(urllib.request.urlopen("https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/" + name + "/monthly/" + str(datetime.now().year - [0, 1][datetime.now().month == 1]) + ["0", ""][len(month) > 1] + month + "01/" + str(datetime.now().year) + ["0", ""][len(str(datetime.now().month)) > 1] + str(datetime.now().month) + "01").read().decode())["items"][0]["views"]
-        results.append(Page(name, "None", views, words))
+        results.append(Page(name, None, views, words))
+    for x in results:
+        handler.add_page(x)
     return results

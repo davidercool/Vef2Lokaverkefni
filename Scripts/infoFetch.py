@@ -1,4 +1,4 @@
-import urllib.request, os, json, threading
+import urllib.request, urllib.error, os, json, threading
 from Scripts.page import *
 
 topSites=[]
@@ -25,6 +25,7 @@ def updatePages():
                         pages[elem[0]] = Page(elem[0], iceland, elem[1])
                     except KeyError: pass
         except UnicodeEncodeError: pass #print("Includes non ascii characters")
+        except urllib.error.HTTPError: pass #print("Page not found")
 
 
     def fetchLanguageDataScrape(elem):
@@ -33,6 +34,7 @@ def updatePages():
             with urllib.request.urlopen("https://en.wikipedia.org/wiki/" + elem[0]) as url:
                 pages[elem[0]] = Page(elem[0], "interwiki-is" in url.read().decode(), elem[1])
         except UnicodeEncodeError: pass #print("Includes non ascii characters")
+        except urllib.error.HTTPError: pass  # print("Page not found")
 
 
     class DataThread (threading.Thread):
@@ -61,6 +63,6 @@ def updatePages():
     for x in threads:
         x.join()
 
-    with open(os.path.join(os.path.realpath(__file__), "..\\..\\UserData\\pages.json"), "w") as f:
+    with open(os.path.join(os.path.realpath(__file__), "..\\..\\UserData\\top_pages.json"), "w") as f:
         print(pages)
         f.write(str(pages))

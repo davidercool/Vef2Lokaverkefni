@@ -1,15 +1,16 @@
+import urllib.error
 from flask import *
-from Scripts.infoFetch import updatePages
-from Scripts.dataHandler import Handler
+from Scripts.dataHandler import *
 from Scripts.user import *
 from Scripts.resources import *
+from Scripts.submission import *
 
-try:
-    with open("UserData/pages.json", "r") as f:
+'''try:
+    with open("UserData/top_pages.json", "r") as f:
         for x in list(eval(f.read()).values()):
             pages[x["name"]] = Page(x["name"], x["translated"], x["views"])
 except FileNotFoundError:
-    updatePages()
+    updatePages()'''
 
 app = Flask(__name__)
 app.config.update(dict(
@@ -17,11 +18,10 @@ app.config.update(dict(
     WTF_CSRF_SECRET_KEY="PrinceCharlesVI",
 ))
 
-app.secret_key = "PrinceCharlesVI"
+handler = Handler("UserData/data.json", "UserData/subdata.json", "UserData/pages.json", "UserData/top_pages.json")
+#handler.set_top_pages(pages)
 
-handler = Handler("UserData/data.json")
-
-filteredPages = list(filter(lambda x: not x.translated, list(pages.values())))
+filteredPages = list(filter(lambda x: not x.translated, list(handler.top_pages.values())))
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -29,20 +29,41 @@ def index():
     return render_template('home.html', untranslatedArticles=filteredPages, enumerate=enumerate, str=str, len=len)
 
 
+@app.route("/translate/<pagename>", methods=["GET", "POST"])
+def editor(pagename):
+    page = handler.get_page(pagename)
+    if page is not None:
+        userID = decrypt(request.cookies.get("userID"))
+        if userID is None:
+            # ef user er ekki logged in
+            return redirect("/login")
+        try:
+            if handler.get_user(userID) is None:
+                # ef user er logged it en ekki til
+                return redirect("/login")
+            if request.method == "POST":
+                text = request.form.get("Text1")
+                handler.add_submission(userID, Submission(text, Page(pagename, None, -1), handler.get_user(userID)))
+                # ef user er logged in, til og var að submitta
+                return redirect("/p/" + pagename)
+            # ef user er logged in og til
+            return render_template('translation.html', pagename=pagename)
+        except ValueError:
+            return "error"
+    return "404"
+
+
 @app.route("/translate")
-def editor():
-    userID = request.cookies.get("userID")
-    if userID is None:
-        # ef user er ekki logged in
-        return render_template('translation.html')
-    try:
-        if handler.get_user(decrypt(userID)) is None:
-            # ef user er logged it en ekki til
-            return render_template('translation.html')
-        # ef user er logged in og til
-        return render_template('translation.html')
-    except:
-        return "error"
+def empty_editor():
+    return redirect("/")
+
+
+@app.route("/t/<int:subID>")
+def view_translated(subID):
+    submission = handler.get_submission(subID)
+    if submission is not None:
+        return submission.text
+    return "404"
 
 
 @app.route("/bounty")
@@ -50,11 +71,22 @@ def bounty():
     return render_template('bounty.html', untranslatedArticles=filteredPages, enumerate=enumerate, str=str, len=len)
 
 
+@app.route("/p/<pagename>")
+def pageview(pagename):
+    page = handler.get_page(pagename)
+    if page is not None:
+        return render_template('pageview.html', page=page, enumerate=enumerate, handler=handler)
+    try:
+        if "Wikipedia does not have an article with this exact name." not in urllib.request.urlopen("https://en.wikipedia.org/wiki/" + pagename).read().decode():
+            handler.add_page(Page(pagename, None, -1))
+    except urllib.error.HTTPError: pass
+    return "404"
+
 @app.route("/u/<username>")
 def userpage(username):
-    if handler.get_user(username) is not None:
-        return render_template('userpage.html', user=handler.get_user(username))
-
+    user = handler.get_user(username)
+    if user is not None:
+        return render_template('userpage.html', user=user)
     return "404"
 
 
@@ -97,7 +129,7 @@ def search():
     l = 20 if l is None else l
     o = 0 if o is None else o
     try:
-        return str(get_searches(s,l,o))
+        return str(get_searches(s,l,o,handler))
     except:
         return "Unknown error"
 
