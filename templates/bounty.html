@@ -14,8 +14,12 @@
                 <a class="item" href="/">Home</a>
                 <a class="item" href="#">Leaderboards</a>
                 <div class="right menu">
-                    <a class="item" href="#">Sign In</a>
-                    <a class="item" href="#">Info</a>
+                    <a class="item" href="/login">Sign In</a>
+                    <a class="item" href="/signup">Sign up</a>
+                    <form class="ui search" action="/search" id="sform" method="get">
+                        <input class="prompt" onkeydown="updateText()"  type="text" name="s" id="stext" placeholder="search">
+                        <input type="submit" style="display: none;">
+                    </form>
                 </div>
             </div>
         </header>

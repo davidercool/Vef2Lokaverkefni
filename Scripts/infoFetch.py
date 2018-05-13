@@ -36,13 +36,11 @@ def updatePages():
         except UnicodeEncodeError: pass #print("Includes non ascii characters")
         except urllib.error.HTTPError: pass  # print("Page not found")
 
-
     class DataThread (threading.Thread):
         def __init__(self, elem):
             threading.Thread.__init__(self)
             self.elem = elem
             self.name = elem[0]
-
 
         def run(self):
             print("Starting " + self.name)
