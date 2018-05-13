@@ -1,4 +1,5 @@
-from cryption import *
+from Scripts.cryption import *
+
 
 class User:
     def __init__(self, name, mail, passw, submissions=[], created=False):
@@ -25,6 +26,9 @@ class User:
 
     def add_submission(self, submission):
         self.__submissions.append(submission)
+
+    def pretty(self):
+        return "<User>(Name: " + self.__name + ")"
 
     def __str__(self):
         return "{'name':'" + self.__name + "', 'mail': '" + self.__mail + "', 'passw': '" + self.__passw + "', 'submissions': " + str(self.__submissions) + "}"
