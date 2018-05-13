@@ -2,6 +2,7 @@ import urllib.request
 from datetime import datetime
 from Scripts.page import *
 
+
 def indexOfNth(container, elem = " ", nth = 1):
     if nth == 0:
         return 0
@@ -13,6 +14,7 @@ def indexOfNth(container, elem = " ", nth = 1):
             return i
     if occ < nth:
         return len(container)
+
 
 def get_searches(s,l,o):
     results=[]
@@ -32,8 +34,3 @@ def get_searches(s,l,o):
         views = eval(urllib.request.urlopen("https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/" + name + "/monthly/" + str(datetime.now().year - [0, 1][datetime.now().month == 1]) + ["0", ""][len(month) > 1] + month + "01/" + str(datetime.now().year) + ["0", ""][len(str(datetime.now().month)) > 1] + str(datetime.now().month) + "01").read().decode())["items"][0]["views"]
         results.append(Page(name, None, views, words))
     return results
-
-
-'''name="Albert_Einstein"
-month = str([datetime.now().month - 1, 12][datetime.now().month == 1])
-print(eval(urllib.request.urlopen("https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/"+name+"/monthly/"+str(datetime.now().year-[0,1][datetime.now().month==1])+["0",""][len(month)>1]+month+"01/"+str(datetime.now().year)+["0",""][len(str(datetime.now().month))>1]+str(datetime.now().month)+"01").read().decode())["items"][0]["views"])'''

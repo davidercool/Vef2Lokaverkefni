@@ -1,8 +1,9 @@
 from flask import *
 from Scripts.infoFetch import updatePages
-from Scripts.dataHandler import Handler
+from Scripts.dataHandler import *
 from Scripts.user import *
 from Scripts.resources import *
+from Scripts.submission import *
 
 try:
     with open("UserData/pages.json", "r") as f:
@@ -17,9 +18,8 @@ app.config.update(dict(
     WTF_CSRF_SECRET_KEY="PrinceCharlesVI",
 ))
 
-app.secret_key = "PrinceCharlesVI"
-
-handler = Handler("UserData/data.json")
+handler = Handler("UserData/data.json", "UserData/subdata.json")
+print(handler.get_user("admin"))
 
 filteredPages = list(filter(lambda x: not x.translated, list(pages.values())))
 
@@ -29,19 +29,24 @@ def index():
     return render_template('home.html', untranslatedArticles=filteredPages, enumerate=enumerate, str=str, len=len)
 
 
-@app.route("/translate")
+@app.route("/translate", methods=["GET", "POST"])
 def editor():
-    userID = request.cookies.get("userID")
+    userID = decrypt(request.cookies.get("userID"))
     if userID is None:
         # ef user er ekki logged in
-        return render_template('translation.html')
+        return redirect("/login")
     try:
-        if handler.get_user(decrypt(userID)) is None:
+        if handler.get_user(userID) is None:
             # ef user er logged it en ekki til
-            return render_template('translation.html')
+            return redirect("/login")
+        if request.method == "POST":
+            text = request.form.get("Text1")
+            handler.add_submission(userID, Submission(text, Page("!?unkownPage?!", None, -1), handler.get_user(userID)))
+            # ef user er logged in, til og var að submitta
+            return "Thanks for the sub"
         # ef user er logged in og til
         return render_template('translation.html')
-    except:
+    except ValueError:
         return "error"
 
 

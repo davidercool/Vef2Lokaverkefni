@@ -22,12 +22,14 @@
         <div class="textboxes">
             <div class="center textbox">
                 <h1>Translate</h1>
-                <textarea name="Text1" cols="78" rows="50" id="translate" value="hello"></textarea>
+                <textarea form="tform" name="Text1" rows=25 style="width:100%;" id="translate"></textarea>
+                <form class="ui center" action="/translate" method="post" id="tform" style="width=100%;">
+                    <button class="ui center button" type="submit">Submit</button>
+                </form>
             </div>
             <div class="textbox">
                 <h1 class="center">Preview</h1>
                 <div class="bgwhite" id="preview">
-                
                 </div>
             </div>
         </div>
