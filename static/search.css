@@ -1,0 +1,41 @@
+body {
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: black;
+}
+
+.box {
+    margin-top: 2%;
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    padding: 1%;
+}
+
+.searchoptionscontainer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20%;
+}
+
+.articleinfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1%;
+    margin-bottom: 0%;
+    line-height: 16px;
+}
+
+.articleinfo * {
+    width: 25%;
+}
+
+.diviv {
+    margin-left: -37%;
+}

@@ -36,6 +36,6 @@ class Page:
         return "<Page>(" + self.__name + ")"
 
     def __str__(self):
-        return "{\"name\": \"" + self.__name + "\", \"translated\": " + str(self.__translated) + ", \"views\": " + str(self.__views) + ", \"length\": " + str(self.__length) + "}"
+        return "{\"name\": \"" + self.__name + "\", \"translated\": \"" + str(self.__translated) + "\", \"views\": " + str(self.__views) + ", \"length\": " + str(self.__length) + "}"
 
     __repr__ = __str__
