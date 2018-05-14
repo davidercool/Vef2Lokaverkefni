@@ -28,16 +28,7 @@
         <div class="searchresultscontainer box">
             <h1>Search Results</h1>
         {% for x, elem in enumerate(results) %}
-            <!--<div class="searchresultscontainer box" id="article{{x}}">
-                <h1 class="articlename"></h1>
-                <div class="articleinfo">
-                    <div class="diviv"></div> <!-- já þetta þarf að vera hérna ég veit ekkert afhverju !-->
-                    <!--<h3 class="articlebounty"> Bounty</h3>
-                    <h3 class="articlelength"> words</h3>
-                    <h3 class="articleviews"> Views</h3>
-                </div>
-            </div>-->
-            <div class="article">
+            <div class="article" id="article{{x}}">
                 <h1 class="articlename">{{elem["name"]}}</h1>
                 <div class="articleinfo">
                     <div class="diviv"></div> <!-- já þetta þarf að vera hérna ég veit ekkert afhverju !-->
@@ -52,22 +43,20 @@
             <h2 class="optionstitle">Filter Options</h2>
             <div class="viewsslider jsbox">
                 <h3 class="viewsslidername">Filter By views</h3>
-                <div class="" id="slider"></div>
+                <div onmousemove="firstSlider()" class="" id="slider"></div>
             </div>
             <div class="wordslider jsbox">
                 <h3 class="wordslidername">Filter By Length (in words)</h3>
-                <div class="" id="slider2"></div>
+                <div onmousemove="secondSlider()" class="" id="slider2"></div>
             </div>
             <div class="bountyslider jsbox">
                 <h3 class="bountyslidername">Filter By Bounty reward</h3>
-                <div class="" id="slider3"></div>
+                <div onmousemove="thirdSlider()" class="" id="slider3"></div>
             </div>
         </div>
-        <script type="text/javascript" src="../static/search.js"></script>
         <script type="text/javascript">
             results = [{% for x, elem in enumerate(results) %}{name:"{{elem["name"]}}",translated:"{{elem["translated"]}}",views:{{elem["views"]}},length:{{[elem["length"], 0][elem["length"] == ""]}}}{% if x != len(results) - 1%},{% endif %}{% endfor %}];
-            MYLIBRARY.init(results);
-            MYLIBRARY.results();
         </script>
+        <script type="text/javascript" src="../static/search.js"></script>
     </body>
 </html>
