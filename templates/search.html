@@ -56,9 +56,9 @@
         </div>
         <script type="text/javascript">
             results = [{% for x, elem in enumerate(results) %}{name:"{{elem["name"]}}",translated:"{{elem["translated"]}}",views:{{elem["views"]}},length:{{[elem["length"], 0][elem["length"] == ""]}}}{% if x != len(results) - 1%},{% endif %}{% endfor %}];
-            maxViews = {{get_max_views(results)}};
-            maxLength = {{get_max_length(results)}};
-            maxBounty = {{get_max_bounty(results)}};
+            maxViews = {{get_max_views(results)}}+100;
+            maxLength = {{get_max_length(results)}}+100;
+            maxBounty = {{get_max_bounty(results)}}+10;
         </script>
         <script type="text/javascript" src="../static/search.js"></script>
     </body>

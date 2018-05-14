@@ -40,7 +40,6 @@ def get_searches(s,l,o,handler):
 
 def get_max_views(res):
     best = res[0].views
-    print(best)
     for x in res:
         if x.views > best:
             best = x.views
@@ -48,17 +47,14 @@ def get_max_views(res):
 
 
 def get_max_length(res):
-    best = res[0].length
-    print(best)
+    best = int(res[0].length)
     for x in res:
-        if x.length > best:
-            best = x.length
+        best = max(best,int(x.length))
     return best
 
 
 def get_max_bounty(res):
     best = res[0].bounty
-    print(best)
     for x in res:
         if x.bounty > best:
             best = x.bounty
