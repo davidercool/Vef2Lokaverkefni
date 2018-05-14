@@ -22,13 +22,27 @@
             </div>
         </header>
         <div class="searchresultscontainer box">
-            <h1 class="articlename">Article Name</h1>
-            <div class="articleinfo">
-                <div class="diviv"></div> <!-- já þetta þarf að vera hérna ég veit ekkert afhverju !-->
-                <h3 class="articlebounty">800 Bounty</h3>
-                <h3 class="articlelength">1337 words</h3>
-                <h3 class="articleviews">8008135 Views</h3>
+            <h1>Search Results</h1>
+        {% for x, elem in enumerate(results) %}
+            <!--<div class="searchresultscontainer box" id="article{{x}}">
+                <h1 class="articlename"></h1>
+                <div class="articleinfo">
+                    <div class="diviv"></div> <!-- já þetta þarf að vera hérna ég veit ekkert afhverju !-->
+                    <!--<h3 class="articlebounty"> Bounty</h3>
+                    <h3 class="articlelength"> words</h3>
+                    <h3 class="articleviews"> Views</h3>
+                </div>
+            </div>-->
+            <div class="article">
+                <h1 class="articlename">{{elem["name"]}}</h1>
+                <div class="articleinfo">
+                    <div class="diviv"></div> <!-- já þetta þarf að vera hérna ég veit ekkert afhverju !-->
+                    <h3 class="articlebounty">{{elem["views"]//100}} Bounty</h3>
+                    <h3 class="articlelength">{{elem["length"]}} words</h3>
+                    <h3 class="articleviews">{{elem["views"]}} Views</h3>
+                </div>
             </div>
+        {% endfor %}
         </div>
         <div class="searchoptionscontainer box">
             <h2 class="optionstitle">Filter Options</h2>
