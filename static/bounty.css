@@ -16,6 +16,10 @@ p {
     width: 45%;
 }
 
+a {
+    color: rgb(242, 192, 192);
+}
+
 .header {
     border-bottom: 2px solid white;
     display: flex;

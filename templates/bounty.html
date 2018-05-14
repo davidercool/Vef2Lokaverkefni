@@ -31,12 +31,12 @@
             {% for x, elem in enumerate(untranslatedArticles) %}
                 {% if x % 2 == 0 %}
                     <div class="article">
-                        <p class="headerone"><a href="http://en.wikipedia.com/wiki/{{elem.name}}">{{elem.prettyName}}</a></p>
+                        <p class="headerone"><a href="/p/{{elem.name}}">{{elem.prettyName}}</a></p>
                         <p class="headertwo {{["lone", "ltwo", "lthree", "lfour", "lfive", "lsix"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
                     </div>
                 {% else %}
                     <div class="article2">
-                        <p class="headerone"><a href="http://en.wikipedia.com/wiki/{{elem.name}}">{{elem.prettyName}}</a></p>
+                        <p class="headerone"><a href="/p/{{elem.name}}">{{elem.prettyName}}</a></p>
                         <p class="headertwo {{["lone", "ltwo", "lthree", "lfour", "lfive", "lsix"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
                     </div>
                 {% endif %}
