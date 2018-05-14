@@ -59,8 +59,10 @@
                 <div class="" id="slider3"></div>
             </div>
         </div>
-        <script src="../static/search.js">
-            results = {{results}};
+        <script type="text/javascript" src="../static/search.js"></script>
+        <script type="text/javascript">
+            MYLIBRARY.init({{results}});
+            MYLIBRARY.results();
         </script>
     </body>
 </html>
