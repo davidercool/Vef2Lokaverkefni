@@ -17,7 +17,7 @@
                     <a class="item" href="/login">Sign In</a>
                     <a class="item" href="/signup">Sign up</a>
                     <form class="ui search" action="/search" id="sform" method="get">
-                        <input class="prompt" onkeydown="updateText()"  type="text" name="s" id="stext" placeholder="search">
+                        <input class="prompt"  type="text" name="s" id="stext" placeholder="search">
                         <input type="submit" style="display: none;">
                     </form>
                 </div>
@@ -32,12 +32,12 @@
                 {% if x % 2 == 0 %}
                     <div class="article">
                         <p class="headerone"><a href="http://en.wikipedia.com/wiki/{{elem.name}}">{{elem.prettyName}}</a></p>
-                        <p class="headertwo {{["lone", "ltwo", "lthree", "lfour"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
+                        <p class="headertwo {{["lone", "ltwo", "lthree", "lfour", "lfive", "lsix"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
                     </div>
                 {% else %}
                     <div class="article2">
                         <p class="headerone"><a href="http://en.wikipedia.com/wiki/{{elem.name}}">{{elem.prettyName}}</a></p>
-                        <p class="headertwo {{["lone", "ltwo", "lthree", "lfour"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
+                        <p class="headertwo {{["lone", "ltwo", "lthree", "lfour", "lfive", "lsix"][len(str(elem.bounty))-1]}}">{{elem.bounty}}</p>
                     </div>
                 {% endif %}
             {% endfor %}

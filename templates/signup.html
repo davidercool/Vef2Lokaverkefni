@@ -7,6 +7,20 @@
         <link rel="stylesheet" href="../static/login.css">
     </head>
     <body>
+        <header>
+            <div class="ui menu">
+                <a class="item" href="/">Home</a>
+                <a class="item" href="#">Leaderboards</a>
+                <div class="right menu">
+                    <a class="item" href="/login">Sign In</a>
+                    <a class="item" href="/signup">Sign up</a>
+                    <form class="ui search" action="/search" id="sform" method="get">
+                        <input class="prompt"  type="text" name="s" id="stext" placeholder="search">
+                        <input type="submit" style="display: none;">
+                    </form>
+                </div>
+            </div>
+        </header>
         {% if message is not none%}
             <div class="ui small modal" style="text-align: center; background-color: {{colors[0]}}; color: {{colors[1]}};">
                 <h1>{{ message }}</h1>
@@ -15,7 +29,7 @@
                 $('.ui.modal').modal('show');
             </script>
         {% endif %}
-        <form class="ui form marginal" action="/signup" method="post">
+        <form class="ui form marginal logform" action="/signup" method="post">
             <div class="field required">
                 <label>Username</label>
                 <input type="text" placeholder="Username" name="name" required>

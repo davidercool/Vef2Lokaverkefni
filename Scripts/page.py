@@ -27,7 +27,7 @@ class Page:
 
     @property
     def bounty(self):
-        return self.__views // 10000
+        return self.__views // 100
 
     @property
     def length(self):
@@ -45,6 +45,6 @@ class Page:
         return "<Page>(" + self.__name + ")"
 
     def __str__(self):
-        return "{\"name\": \"" + self.__name + "\", \"translated\": " + str(self.__translated) + ", \"views\": " + str(self.__views) + ", \"length\": " + str(self.__length) + ", \"translations\": " + str(self.__translations) + "}"
+        return "{\"name\": \"" + self.__name + "\", \"translated\": " + str(self.__translated) + ", \"views\": " + str(self.__views) + ", \"length\": " + (str(self.__length) if str(self.__length) != "" else "0") + ", \"translations\": " + str(self.__translations) + "}"
 
     __repr__ = __str__
