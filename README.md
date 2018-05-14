@@ -7,4 +7,4 @@
 ## Wiki: [link](https://github.com/davidercool/Vef2Lokaverkefni/wiki)
 
 
-## Video: [Link](placeholder)
+## Video: [Link](https://www.youtube.com/watch?v=VqzzaE0aWj4)
