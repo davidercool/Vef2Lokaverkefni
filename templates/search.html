@@ -14,7 +14,7 @@
         <header>
             <div class="ui menu">
                 <a class="item" href="/">Home</a>
-                <a class="item" href="#">Leaderboards</a>
+                <a class="item" href="/bounty">Bounty</a>
                 <div class="right menu">
                     <a class="item" href="/login">Sign In</a>
                     <a class="item" href="/signup">Sign up</a>
@@ -28,15 +28,6 @@
         <div class="searchresultscontainer box">
             <h1>Search Results</h1>
         {% for x, elem in enumerate(results) %}
-            <!--<div class="searchresultscontainer box" id="article{{x}}">
-                <h1 class="articlename"></h1>
-                <div class="articleinfo">
-                    <div class="diviv"></div> <!-- já þetta þarf að vera hérna ég veit ekkert afhverju !-->
-                    <!--<h3 class="articlebounty"> Bounty</h3>
-                    <h3 class="articlelength"> words</h3>
-                    <h3 class="articleviews"> Views</h3>
-                </div>
-            </div>-->
             <div class="article">
                 <h1 class="articlename">{{elem["name"]}}</h1>
                 <div class="articleinfo">
@@ -66,8 +57,9 @@
         <script type="text/javascript" src="../static/search.js"></script>
         <script type="text/javascript">
             results = [{% for x, elem in enumerate(results) %}{name:"{{elem["name"]}}",translated:"{{elem["translated"]}}",views:{{elem["views"]}},length:{{[elem["length"], 0][elem["length"] == ""]}}}{% if x != len(results) - 1%},{% endif %}{% endfor %}];
-            MYLIBRARY.init(results);
-            MYLIBRARY.results();
+            maxViews = {{get_max_views(results)}};
+            maxLength = {{get_max_length(results)}};
+            maxBounty = {{get_max_bounty(results)}};
         </script>
     </body>
 </html>

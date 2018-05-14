@@ -36,3 +36,30 @@ def get_searches(s,l,o,handler):
     for x in results:
         handler.add_page(x)
     return results
+
+
+def get_max_views(res):
+    best = res[0].views
+    print(best)
+    for x in res:
+        if x.views > best:
+            best = x.views
+    return best
+
+
+def get_max_length(res):
+    best = res[0].length
+    print(best)
+    for x in res:
+        if x.length > best:
+            best = x.length
+    return best
+
+
+def get_max_bounty(res):
+    best = res[0].bounty
+    print(best)
+    for x in res:
+        if x.bounty > best:
+            best = x.bounty
+    return best
