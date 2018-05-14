@@ -29,7 +29,7 @@
             <h1>Search Results</h1>
         {% for x, elem in enumerate(results) %}
             <div class="article" id="article{{x}}">
-                <h1 class="articlename">{{elem["name"]}}</h1>
+                <h1 class="articlename"><a href="/p/{{elem['name']}}">{{elem["name"]}}</a></h1>
                 <div class="articleinfo">
                     <div class="diviv"></div> <!-- já þetta þarf að vera hérna ég veit ekkert afhverju !-->
                     <h3 class="articlebounty">{{elem["views"]//100}} Bounty</h3>
