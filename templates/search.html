@@ -14,7 +14,7 @@
         <header>
             <div class="ui menu">
                 <a class="item" href="/">Home</a>
-                <a class="item" href="#">Leaderboards</a>
+                <a class="item" href="/bounty">Bounty</a>
                 <div class="right menu">
                     <a class="item" href="/login">Sign In</a>
                     <a class="item" href="/signup">Sign up</a>
@@ -56,6 +56,9 @@
         </div>
         <script type="text/javascript">
             results = [{% for x, elem in enumerate(results) %}{name:"{{elem["name"]}}",translated:"{{elem["translated"]}}",views:{{elem["views"]}},length:{{[elem["length"], 0][elem["length"] == ""]}}}{% if x != len(results) - 1%},{% endif %}{% endfor %}];
+            maxViews = {{get_max_views(results)}};
+            maxLength = {{get_max_length(results)}};
+            maxBounty = {{get_max_bounty(results)}};
         </script>
         <script type="text/javascript" src="../static/search.js"></script>
     </body>

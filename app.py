@@ -129,7 +129,7 @@ def search():
     l = 20 if l is None else l
     o = 0 if o is None else o
     #try:
-    return render_template("search.html", results=get_searches(s,l,o,handler), enumerate=enumerate, len=len)
+    return render_template("search.html", results=get_searches(s,l,o,handler), enumerate=enumerate, len=len, get_max_views=get_max_views, get_max_length=get_max_length, get_max_bounty=get_max_bounty)
     #except:
         # return "Unknown error"
 
