@@ -5,3 +5,6 @@
 ## [link á digitalocean droplet](http://188.166.43.218)
 
 ## Wiki: [link](https://github.com/davidercool/Vef2Lokaverkefni/wiki)
+
+
+## Video: [Link](placeholder)
