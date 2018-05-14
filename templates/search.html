@@ -63,8 +63,11 @@
                 <div class="" id="slider3"></div>
             </div>
         </div>
-        <script src="../static/search.js">
+        <script type="text/javascript" src="../static/search.js"></script>
+        <script type="text/javascript">
             results = [{% for x, elem in enumerate(results) %}{name:"{{elem["name"]}}",translated:"{{elem["translated"]}}",views:{{elem["views"]}},length:{{[elem["length"], 0][elem["length"] == ""]}}}{% if x != len(results) - 1%},{% endif %}{% endfor %}];
+            MYLIBRARY.init(results);
+            MYLIBRARY.results();
         </script>
     </body>
 </html>
