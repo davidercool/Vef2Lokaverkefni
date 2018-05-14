@@ -4,7 +4,7 @@
         <link type="text/css" rel="stylesheet" href="../static/semantic/semantic.min.css">
         <script src="../static/semantic/jquery-3.3.1.min.js"></script>
         <script src="../static/semantic/semantic.min.js"></script>
-        <link type="text/css" rel="stylesheet" href="../static/translation.css">
+        <link type="text/css" rel="stylesheet" href="../static/pageview.css">
         <meta charset="UTF-8">
         <title>Translate</title>
     </head>
@@ -27,7 +27,11 @@
             <h1 class="pagename">{{page.prettyName}}</h1>
         </div>
         <div class="info">
-            <div class="translations">
+            <form class="bouton" action="/translate/{{page.name}}" method="get">
+                <button class="ui center button" type="submit">Translate</button>
+            </form>
+            <div class="translations box">
+                <h2>Translations</h2>
                 {% for x, elem in enumerate(page.translations) %}
                     <div class="translation">
                         <h3>{{x + 1}}</h3>
@@ -35,9 +39,7 @@
                     </div>
                 {% endfor %}
             </div>
-            <form action="/translate/{{page.name}}" method="get">
-                <button class="ui center button" type="submit">Translate</button>
-            </form>
+
         </div>
     </body>
 </html>
