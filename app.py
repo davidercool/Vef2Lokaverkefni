@@ -82,11 +82,12 @@ def pageview(pagename):
     except urllib.error.HTTPError: pass
     return "404"
 
+
 @app.route("/u/<username>")
 def userpage(username):
     user = handler.get_user(username)
     if user is not None:
-        return render_template('userpage.html', user=user)
+        return render_template('userpage.html', user=user, handler=handler)
     return "404"
 
 

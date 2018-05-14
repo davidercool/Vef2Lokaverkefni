@@ -42,16 +42,18 @@
         </div>
         <div class="submissionbox box">
             <h1 class="title">Activity</h1>
-            <div class="submission">
-                <div class="action">
-                    <p class="articlePreface">Translated article:</p>
-                    <h1 class="articleTitle">World War II</h1>
+            {% for x in user.submissions %}
+                <div class="submission">
+                    <div class="action">
+                        <p class="articlePreface">Translated article:</p>
+                        <h1 class="articleTitle"><a href="/p/{{handler.get_submission(x).page.name}}">{{handler.get_submission(x).page.prettyName}}</a></h1>
+                    </div>
+                    <div class="reward">
+                        <p class="bountypreface">bounty awarded</p>
+                        <h2 class="bountyreward">{{handler.get_page(handler.get_submission(x).page.name).bounty}}</h2>
+                    </div>
                 </div>
-                <div class="reward">
-                    <p class="bountypreface">bounty awarded</p>
-                    <h2 class="bountyreward">143</h2>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </body>
 </html>
