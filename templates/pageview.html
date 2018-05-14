@@ -14,6 +14,7 @@
                 <a class="item" href="/">Home</a>
                 <a class="item" href="/bounty">Bounty</a>
                 <div class="right menu">
+                    <a class="item" href="/logout">Logout</a>
                     <a class="item" href="/login">Sign In</a>
                     <a class="item" href="/signup">Sign up</a>
                     <form class="ui search" action="/search" id="sform" method="get">
@@ -25,18 +26,20 @@
         </header>
         <div class="pagename-body">
             <h1 class="pagename">{{page.prettyName}}</h1>
-            <h3><a href="https://en.wikipedia.org/wiki/{{page.name}}">Check out on Wikipedia.</a></h3>
         </div>
         <div class="info">
             <form class="bouton" action="/translate/{{page.name}}" method="get">
                 <button class="ui center button" type="submit">Translate</button>
             </form>
+            <h3><a href="https://en.wikipedia.org/wiki/{{page.name}}">Check out on Wikipedia.</a></h3>
             <div class="translations box">
                 <h2>Translations</h2>
                 {% for x, elem in enumerate(page.translations) %}
                     <div class="translation">
                         <h3>{{x + 1}}</h3>
-                        <p><a href="/t/{{elem}}">{{handler.get_submission(elem).user.name}}</a></p>
+                        <div class="translatorname">
+                            <p><a href="/t/{{elem}}">{{handler.get_submission(elem).user.name}}</a></p>
+                        </div>
                     </div>
                 {% endfor %}
             </div>

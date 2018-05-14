@@ -1,4 +1,4 @@
-import urllib.request
+import urllib.request, urllib.error
 from datetime import datetime
 from Scripts.page import *
 
@@ -24,15 +24,17 @@ def get_searches(s,l,o,handler):
     sstr3 = "<div class=\"mw-pvi-month\">"
     sstr4 = "<div class=\"mw-pvi-month\"><a href=\"#\">"
     for x in range(sPage.count(sstr)):
-        sind = indexOfNth(sPage, sstr, x + 1)
-        eind = indexOfNth(sPage[sind:], "</li>", 1)
-        sind2 = indexOfNth(sPage, sstr2, x + 1)
-        eind2 = indexOfNth(sPage[sind2:], " words)", 1)
-        name = sPage[sind + len(sstr):sind + len(sstr) + indexOfNth(sPage[sind + len(sstr):], "\" title=\"")]
-        words = sPage[sind2 + len(sstr2):sind2 + eind2].replace(",", "")
-        month = str([datetime.now().month - 1, 12][datetime.now().month == 1])
-        views = eval(urllib.request.urlopen("https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/" + name + "/monthly/" + str(datetime.now().year - [0, 1][datetime.now().month == 1]) + ["0", ""][len(month) > 1] + month + "01/" + str(datetime.now().year) + ["0", ""][len(str(datetime.now().month)) > 1] + str(datetime.now().month) + "01").read().decode())["items"][0]["views"]
-        results.append(Page(name, None, views, words))
+        try:
+            sind = indexOfNth(sPage, sstr, x + 1)
+            eind = indexOfNth(sPage[sind:], "</li>", 1)
+            sind2 = indexOfNth(sPage, sstr2, x + 1)
+            eind2 = indexOfNth(sPage[sind2:], " words)", 1)
+            name = sPage[sind + len(sstr):sind + len(sstr) + indexOfNth(sPage[sind + len(sstr):], "\" title=\"")]
+            words = sPage[sind2 + len(sstr2):sind2 + eind2].replace(",", "")
+            month = str([datetime.now().month - 1, 12][datetime.now().month == 1])
+            views = eval(urllib.request.urlopen("https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/" + name + "/monthly/" + str(datetime.now().year - [0, 1][datetime.now().month == 1]) + ["0", ""][len(month) > 1] + month + "01/" + str(datetime.now().year) + ["0", ""][len(str(datetime.now().month)) > 1] + str(datetime.now().month) + "01").read().decode())["items"][0]["views"]
+            results.append(Page(name, None, views, words))
+        except urllib.error.HTTPError: pass
     for x in results:
         handler.add_page(x)
     return results
@@ -49,7 +51,7 @@ def get_max_views(res):
 def get_max_length(res):
     best = int(res[0].length)
     for x in res:
-        best = max(best,int(x.length))
+        best = max(best,int(x.length if x.length != "" else 0))
     return best
 
 

@@ -6,12 +6,13 @@
         <script src="../static/semantic/semantic.min.js"></script>
         <link rel="stylesheet" href="../static/login.css">
     </head>
-    <body>
+    <body style="color:white;">
         <header>
             <div class="ui menu">
                 <a class="item" href="/">Home</a>
                 <a class="item" href="/bounty">Bounty</a>
                 <div class="right menu">
+                    <a class="item" href="/logout">Logout</a>
                     <a class="item" href="/login">Sign In</a>
                     <a class="item" href="/signup">Sign up</a>
                     <form class="ui search" action="/search" id="sform" method="get">
@@ -42,7 +43,8 @@
                 <label>Password</label>
                 <input type="password" placeholder="Password" name="passw" required>
             </div>
-            <button class="ui button" type="submit">Submit</button>
+            <button class="ui button" type="submit">Sign Up</button>
         </form>
+        <h3 style="text-align: center;" class="greeting">Already have an account? Click <a href="/login" style="color: rgb(242, 192, 192);">here</a> to login!</h3>
     </body>
 </html>

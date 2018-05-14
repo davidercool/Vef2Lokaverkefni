@@ -17,7 +17,6 @@ body {
 }
 
 .box {
-    margin-top: 2%;
     width: 45%;
     margin-left: auto;
     margin-right: auto;
@@ -33,4 +32,18 @@ body {
     background-color: rgba(255, 255, 255, 0.08);
     border-radius: 10px;
     margin-bottom: 2%;
+}
+
+a {
+    color: rgb(242, 192, 192);
+}
+
+h3 {
+    text-align: center;
+    margin: 2% 0px 0px 0px;
+}
+
+.translatorname {
+    width: 100%;
+    text-align: center;
 }
