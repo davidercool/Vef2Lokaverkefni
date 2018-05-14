@@ -16,8 +16,12 @@
                 <a class="item" href="/">Home</a>
                 <a class="item" href="#">Leaderboards</a>
                 <div class="right menu">
-                    <a class="item" href="#">Sign In</a>
-                    <a class="item" href="#">Info</a>
+                    <a class="item" href="/login">Sign In</a>
+                    <a class="item" href="/signup">Sign up</a>
+                    <form class="ui search" action="/search" id="sform" method="get">
+                        <input class="prompt"  type="text" name="s" id="stext" placeholder="search">
+                        <input type="submit" style="display: none;">
+                    </form>
                 </div>
             </div>
         </header>
@@ -38,7 +42,7 @@
                 <div class="articleinfo">
                     <div class="diviv"></div> <!-- já þetta þarf að vera hérna ég veit ekkert afhverju !-->
                     <h3 class="articlebounty">{{elem["views"]//100}} Bounty</h3>
-                    <h3 class="articlelength">{{elem["length"]}} words</h3>
+                    <h3 class="articlelength">{{[elem["length"], 0][elem["length"] == ""]}} words</h3>
                     <h3 class="articleviews">{{elem["views"]}} Views</h3>
                 </div>
             </div>
@@ -61,7 +65,8 @@
         </div>
         <script type="text/javascript" src="../static/search.js"></script>
         <script type="text/javascript">
-            MYLIBRARY.init({{results}});
+            results = [{% for x, elem in enumerate(results) %}{name:"{{elem["name"]}}",translated:"{{elem["translated"]}}",views:{{elem["views"]}},length:{{[elem["length"], 0][elem["length"] == ""]}}}{% if x != len(results) - 1%},{% endif %}{% endfor %}];
+            MYLIBRARY.init(results);
             MYLIBRARY.results();
         </script>
     </body>
